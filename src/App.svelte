@@ -1,31 +1,22 @@
 <script>
-  let firstName = "Sakib";
-  let lastName = "Al Hasan";
-  let beltColour = "red";
-
-  $: fullName = `${firstName} ${lastName}`; //reactive value
-
-  $: {
-    console.log(beltColour);
-    console.log(fullName);
-  }
-
-  const handleClick = () => {
-    beltColour = "orange";
-  };
-
-  const handleInput = (e) => {
-    beltColour = e.target.value;
-  };
+  let people = [
+    { name: "Joy", beltColour: "black", age: 26, id: 1 },
+    { name: "Floran", beltColour: "blue", age: 46, id: 2 },
+    { name: "Jimmy", beltColour: "red", age: 35, id: 3 },
+  ];
 </script>
 
 <main>
-  <p style="color: {beltColour}">{fullName} - {beltColour} belt</p>
-
-  <!-- <input type="text" on:input={handleInput} value={beltColour} /> -->
-  <input type="text" bind:value={firstName} />
-  <input type="text" bind:value={lastName} />
-  <input type="text" bind:value={beltColour} />
+  <div>
+    {#each people as person (person.id)}
+      <div>
+        <h4>{person.name}</h4>
+        <p>{person.age} years old, {person.beltColour} belt.</p>
+      </div>
+    {:else}
+      <p>There are no people to show</p>
+    {/each}
+  </div>
 </main>
 
 <style>
