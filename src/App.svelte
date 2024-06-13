@@ -19,7 +19,18 @@ let showModal = false;
 let num = 7;
 </script>
 <!-- <Modal message="Hey, i'm a prop value" isPromo={true} /> -->
-<Modal message="Default 2 value"  showModal={showModal} on:click={toggleModal}/>
+<Modal  showModal={showModal} on:click={toggleModal}>
+  <!-- <h3>Add a new person</h3> -->
+  <form action="">
+    <input type="text" placeholder="name">
+    <input type="text" placeholder="belt colour">
+    <button>Add Person</button>
+  </form>
+  <div slot="title">
+  <h3>Add a new person</h3>
+
+  </div>
+</Modal>
 {#if num > 20}
   <p>Greater than 20</p>
 {:else if num > 5}
@@ -29,7 +40,7 @@ let num = 7;
 {/if}
 <main>
   <div>
-    <button on:click={toggleModal}>Open Modal</button>
+    <button on:click|once={toggleModal}>Open Modal</button>
     
     {#each people as person (person.id)}
       <div>

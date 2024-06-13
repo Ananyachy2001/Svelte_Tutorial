@@ -1,13 +1,17 @@
 <script>
-export let message = "default value";
+    //one - makes sure the event can only fire once(removes handler)
+    //preventDefault - prevent the default action (run else.preventDefault())
+    //self - only fires the event if the clicked element is the target
+
 export let showModal = false;
 export let isPromo = false;
 </script>
 
 {#if showModal}
-<div class="backdrop" class:promo={isPromo} on:click>
+<div class="backdrop" class:promo={isPromo} on:click self>
     <div class="modal">
-        <p>{message}</p>
+        <slot></slot>
+        <slot name="title"></slot>
     </div>
 </div>
 {/if}
